@@ -17,14 +17,13 @@ jobs:
         key: ${{ secrets.WAGON_SSH_KEY }}
         known_hosts: ${{ secrets.KNOWN_HOSTS }}
     
-    - run: git clone git@github.com:Arctuition/crossPlatform.git
-    - run: cd crossPlatform
+    - run: git clone git@github.com:Arctuition/crossPlatform.git ./
 
     - uses: subosito/flutter-action@v1
       with:
        channel: master
     - run: flutter config --enable-windows-desktop
-    - run: flutter build windows
+    # - run: flutter build windows
 
     - name: Download
       run: Invoke-WebRequest https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-windows-amd64.zip -OutFile ngrok.zip
