@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  debug-sanbao:
+  debug-sanbao-android:
     runs-on: macos-latest
 
     steps:
@@ -26,7 +26,7 @@ jobs:
     - name: Upload Artifact
       uses: actions/upload-artifact@v2
       with:
-        name: huaweiOnline-release.apk
+        name: apk.zip
         path: android/app/build/outputs/apk/huaweiOffline/release/app-huaweiOffline-armeabi-v7a-release.apk
 
     # - uses: mxschmitt/action-tmate@v3

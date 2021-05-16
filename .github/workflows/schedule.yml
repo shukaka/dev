@@ -1,0 +1,14 @@
+name: schedule task
+
+on:
+  schedule:
+    - cron: '*/5 * * * *'
+
+  workflow_dispatch:
+
+jobs:
+  daily-task:
+    runs-on: ubuntu-latest
+
+    steps:
+    - run: echo $(date)

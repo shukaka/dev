@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  debug-sanbao:
+  debug-sanbao-ios:
     runs-on: macos-latest
 
     steps:
