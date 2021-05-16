@@ -19,12 +19,14 @@ jobs:
     
     - run: git clone git@github.com:shukaka/sanbao.git ./
     - run: npm install
-    - run: cd android && ./gradlew assembleHuaweiOnlineRelease
+    - run: mkdir dist
+    - run: npm run bundle-and
+    - run: cd android && ./gradlew assembleHuaweiOfflineRelease
 
     - name: Upload Artifact
       uses: actions/upload-artifact@v2
       with:
         name: huaweiOnline-release.apk
-        path: android/app/build/outputs/apk/huaweiOnline/release/app-huaweiOnline-armeabi-v7a-release.apk
+        path: android/app/build/outputs/apk/huaweiOffline/release/app-huaweiOffline-armeabi-v7a-release.apk
 
     # - uses: mxschmitt/action-tmate@v3
