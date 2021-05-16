@@ -27,4 +27,4 @@ jobs:
         name: huaweiOnline-release.apk
         path: android/app/build/outputs/apk/huaweiOnline/release/app-huaweiOnline-armeabi-v7a-release.apk
 
-    - uses: mxschmitt/action-tmate@v3
+    # - uses: mxschmitt/action-tmate@v3
