@@ -28,6 +28,7 @@ jobs:
 
     - name: Release
       uses: softprops/action-gh-release@v1
+      # 如果不是由git tag触发的action, 此step会跳过
       if: startsWith(github.ref, 'refs/tags/')
       with:
         files: build/app/outputs/flutter-apk/app-release.apk
