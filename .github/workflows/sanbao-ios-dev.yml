@@ -23,6 +23,7 @@ jobs:
     - run: npm run bundle-ios
 
     - run: cd ios && pod install
+    - run: cd ios && fastlane run setup_ci force:"true"
     - run: cd ios && fastlane match appstore --readonly
       env:
         MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}

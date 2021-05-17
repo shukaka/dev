@@ -17,8 +17,7 @@ jobs:
         key: ${{ secrets.WAGON_SSH_KEY }}
         known_hosts: ${{ secrets.KNOWN_HOSTS }}
     
-    - run: git clone --single-branch --branch appcore_with_osg git@github.com:Arctuition/crossPlatform.git ./
-    - run: git submodule init && git submodule update
+    - run: git clone --recurse-submodules --single-branch --branch appcore_with_osg git@github.com:Arctuition/crossPlatform.git ./
 
     - uses: subosito/flutter-action@v1
       with:
