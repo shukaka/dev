@@ -23,12 +23,14 @@ jobs:
     - run: npm run bundle-ios
 
     - run: cd ios && pod install
-    - run: cd ios && fastlane run setup_ci force:"true"
-    - run: cd ios && fastlane match appstore --readonly
+
+    - run: cd ios && fastlane run create_keychain name:"fastlane.keychain" password:"123456" default_keychain:"true" unlock:"true" timeout:"7200" lock_when_sleeps:"false"
+    - run: cd ios && fastlane run match type:"appstore" readonly:"true" keychain_name:"fastlane.keychain" keychain_password:"123456"
       env:
         MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
     - run: cd ios && fastlane online
       env:
+        FASTLANE_PASSWORD: ${{ secrets.FASTLANE_PASSWORD }}
         FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD: ${{ secrets.FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD }}
 
     # - uses: mxschmitt/action-tmate@v3
