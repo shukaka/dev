@@ -8,19 +8,21 @@ jobs:
     runs-on: macos-latest
 
     steps:
-    # - uses: actions/checkout@v2
+    - uses: actions/checkout@v2
 
-    # - uses: subosito/flutter-action@v1
-    #   with:
-    #     channel: master
+    - uses: subosito/flutter-action@v1
+      with:
+        channel: master
     
-    # - run: flutter config --enable-macos-desktop
-    # - run: flutter build macos
+    - run: flutter config --enable-macos-desktop
+    - run: flutter build macos
 
-    # - name: Upload Artifact
-    #   uses: actions/upload-artifact@v2
-    #   with:
-    #     name: macos.app
-    #     path: build/macos/Build/Products/Release/demo.app/
+    - run: cd build/macos/Build/Products/Release && tar -jcvf demo.tar.bz2 demo.app
 
-    - uses: mxschmitt/action-tmate@v3
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: macos
+        path: build/macos/Build/Products/Release/demo.tar.bz2
+
+    # - uses: mxschmitt/action-tmate@v3

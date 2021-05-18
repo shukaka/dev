@@ -24,6 +24,7 @@ jobs:
 
     - run: cd ios && pod install
 
+    - run: fastlane fastlane-credentials add --username 1156691108@qq.com
     - run: cd ios && fastlane run create_keychain name:"fastlane.keychain" password:"123456" default_keychain:"true" unlock:"true" timeout:"7200" lock_when_sleeps:"false"
     - run: cd ios && fastlane run match type:"appstore" readonly:"true" keychain_name:"fastlane.keychain" keychain_password:"123456"
       env:
@@ -32,6 +33,5 @@ jobs:
       env:
         FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD: ${{ secrets.FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD }}
         FASTLANE_PASSWORD: ${{ secrets.FASTLANE_PASSWORD }}
-        FASTLANE_SESSION: ${{ secrets.FASTLANE_SESSION }}
 
     # - uses: mxschmitt/action-tmate@v3
