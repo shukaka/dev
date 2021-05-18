@@ -30,7 +30,8 @@ jobs:
         MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
     - run: cd ios && fastlane online
       env:
-        FASTLANE_PASSWORD: ${{ secrets.FASTLANE_PASSWORD }}
         FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD: ${{ secrets.FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD }}
+        # FASTLANE_PASSWORD: ${{ secrets.FASTLANE_PASSWORD }}
+        # SPACESHIP_2FA_SMS_DEFAULT_PHONE_NUMBER: SPACESHIP_2FA_SMS_DEFAULT_PHONE_NUMBER
 
     # - uses: mxschmitt/action-tmate@v3
