@@ -4,33 +4,34 @@ on:
   workflow_dispatch:
 
 jobs:
-  setup:
-    runs-on: ${{ matrix.build-os }}
+  build:
+    runs-on: ${{ matrix.build-os }}-latest
 
     strategy:
       matrix:
         platform: [windows, android, macos]
         include:
-        - build-os: windows-latest
+        - platform: windows
+          build-os: windows
           build_target: windows
-          platform: windows
-        - build-os: macos-latest
+        - platform: android
+          build-os: macos
           build_target: apk
-          platform: android
-        - build-os: macos-latest
+        - platform: macos
+          build-os: macos
           build_target: macos
-          platform: macos
       fail-fast: false
 
     steps:
-    - uses: actions/checkout@v2
+    - id: checkout-source-code
+      uses: actions/checkout@v2
 
-    - uses: subosito/flutter-action@v1
+    - id: setup-flutter-env
+      uses: subosito/flutter-action@v1
       with:
         channel: master
     
-    - run: |
-        flutter config --enable-windows-desktop
-        flutter config --enable-macos-desktop
-
-    - run: flutter build -v ${{ matrix.build_target }}
+    - id: enable-flutter-desktop-support
+      run: flutter config --enable-${{ matrix.build-os }}-desktop
+    - id: build-flutter-app
+      run: flutter build ${{ matrix.build_target }}
