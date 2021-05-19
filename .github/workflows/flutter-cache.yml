@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  flutter-macoss-release:
+  flutter-cache:
     runs-on: macos-latest
 
     steps:
@@ -12,8 +12,10 @@ jobs:
 
     - uses: actions/cache@v2
       with:
-        path: /Users/runner/hostedtoolcache/flutter
-        key: flutter-install-cache
+        path: |
+          /Users/runner/hostedtoolcache/flutter
+          ~/.pub-cache
+        key: flutter-cache
 
     - uses: subosito/flutter-action@v1
       with:
