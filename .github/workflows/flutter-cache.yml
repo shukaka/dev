@@ -1,0 +1,20 @@
+name: flutter cache
+
+on:
+  workflow_dispatch:
+
+jobs:
+  flutter-macoss-release:
+    runs-on: macos-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - uses: actions/cache@v2
+      with:
+        path: /Users/runner/hostedtoolcache/flutter
+        key: flutter-install-cache
+
+    - uses: subosito/flutter-action@v1
+      with:
+        channel: master
