@@ -33,5 +33,31 @@ jobs:
     
     - id: enable-flutter-desktop-support
       run: flutter config --enable-${{ matrix.build-os }}-desktop
+
     - id: build-flutter-app
       run: flutter build ${{ matrix.build_target }}
+
+    - id: upload-android-app
+      if: matrix.platform == 'android'
+      uses: actions/upload-artifact@v2
+      with:
+        name: android-app
+        path: build/app/outputs/flutter-apk/app-release.apk
+
+    - id: upload-windows-app
+      if: matrix.platform == 'windows'
+      uses: actions/upload-artifact@v2
+      with:
+        name: windows-app
+        path: build\windows\runner\Release
+
+    - id: tar-mac-app
+      if: matrix.platform == 'macos'
+      run: cd build/macos/Build/Products/Release && tar -jcvf demo.tar.bz2 demo.app
+
+    - id: upload-macos-app
+      if: matrix.platform == 'macos'
+      uses: actions/upload-artifact@v2
+      with:
+        name: macos-app
+        path: build/macos/Build/Products/Release/demo.tar.bz2
