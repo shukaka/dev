@@ -1,6 +1,12 @@
 name: flutter ci
 
 on:
+  push:
+    tags:
+      - 'v*'
+  schedule:
+    - cron: '0 16 * * *'
+
   workflow_dispatch:
 
 jobs:
@@ -61,3 +67,28 @@ jobs:
       with:
         name: macos-app
         path: build/macos/Build/Products/Release/demo.tar.bz2
+
+    - name: slack notification
+      uses: act10ns/slack@v1
+      with: 
+        status: ${{ job.status }} :actor ${{ github.actor }} :commit ${{ github.sha }}
+        steps: ${{ toJson(steps) }}
+      # always / success/ failure / cancelled
+      if: always()
+      env:
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+    - name: publish release page
+      uses: softprops/action-gh-release@v1
+      # 如果不是由git tag触发的action, 此step会跳过
+      # if: startsWith(github.ref, 'refs/tags/')
+      with:
+        files: |
+          build\windows\runner\Release
+          build/app/outputs/flutter-apk/app-release.apk
+          build/macos/Build/Products/Release/demo.tar.bz2
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
