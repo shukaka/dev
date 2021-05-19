@@ -1,0 +1,12 @@
+name: get windows
+
+on:
+  workflow_dispatch:
+
+jobs:
+  get-windows:
+    runs-on: windows-latest
+
+    steps:
+    - uses: mxschmitt/action-tmate@v3
+

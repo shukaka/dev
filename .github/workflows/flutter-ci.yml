@@ -1,0 +1,36 @@
+name: flutter ci
+
+on:
+  workflow_dispatch:
+
+jobs:
+  setup:
+    runs-on: ${{ matrix.build-os }}
+
+    strategy:
+      matrix:
+        platform: [windows, android, macos]
+        include:
+        - build-os: windows-latest
+          build_target: windows
+          platform: windows
+        - build-os: macos-latest
+          build_target: apk
+          platform: android
+        - build-os: macos-latest
+          build_target: macos
+          platform: macos
+      fail-fast: false
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - uses: subosito/flutter-action@v1
+      with:
+        channel: master
+    
+    - run: |
+        flutter config --enable-windows-desktop
+        flutter config --enable-macos-desktop
+
+    - run: flutter build -v ${{ matrix.build_target }}
