@@ -1,0 +1,14 @@
+name: debug macos ci
+
+on:
+  workflow_dispatch:
+
+jobs:
+  get-terminal:
+    # macos-latest / windows-latest / ubuntu-latest
+    runs-on: macos-latest
+    
+    # workflow 日志中会显示可远程登录的 ssh 命令
+    steps:
+     - uses: mxschmitt/action-tmate@v3
+    
