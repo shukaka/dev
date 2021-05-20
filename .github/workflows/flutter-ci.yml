@@ -74,3 +74,41 @@ jobs:
       if: always()
       env:
         SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
+  publish:
+    needs: [build]
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/download-artifact@v2
+      id: download-android-app
+      with:
+        name: android-app
+        path: android-app.apk
+
+    - uses: actions/download-artifact@v2
+      id: download-windows-app
+      with:
+        name: windows-app
+        path: windows-app
+
+    - uses: montudor/action-zip@v1
+      with:
+        args: zip -qq -r windows-app.zip windows-app
+
+    - uses: actions/download-artifact@v2
+      id: download-macos-app
+      with:
+        name: macos-app
+        path: macos-app.tar.bz2
+
+    - uses: softprops/action-gh-release@v1
+      # if: startsWith(github.ref, 'refs/tags/')
+      with:
+        body: test github action release
+        tag_name: v1.3
+        files: |
+          android-app.apk
+          windows-app.zip
+          macos-app.tar.bz2
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}      
