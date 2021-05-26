@@ -1,0 +1,22 @@
+name: auto increment build number
+
+on:
+  workflow_dispatch:
+
+jobs:
+  updateYml:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Update values.yaml
+      uses: fjogeleit/yaml-update-action@master
+      with:
+        valueFile: 'pubspec.yaml'
+        propertyPath: 'version'
+        value: 3.0.0+3
+        commitChange: 'false'
+        updateFile: 'true'
+    - run: cat pubspec.yaml
+
+    // flutter build ios --build-number=$(date "+%m%d%H%M")
