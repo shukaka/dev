@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: apogiatzis/ngrok-tunneling-action@0.1.4
+    - uses: apogiatzis/ngrok-tunneling-action@v0.1.4
       with:
         timeout: 6h
         port: 80
