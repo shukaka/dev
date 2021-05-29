@@ -8,11 +8,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - uses: mxschmitt/action-tmate@v3
     - uses: apogiatzis/ngrok-tunneling-action@v0.1.4
       with:
         timeout: 6h
         port: 80
         ngrok_authtoken: ${{ secrets.NGROK_AUTH_TOKEN }}
-        
-    - uses: mxschmitt/action-tmate@v3
+      
 
