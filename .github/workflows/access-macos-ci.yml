@@ -1,4 +1,4 @@
-name: debug macos ci
+name: access macos env
 
 on:
   workflow_dispatch:

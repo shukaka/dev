@@ -1,4 +1,4 @@
-name: debug windows ci
+name: access windows env
 
 on:
   workflow_dispatch:
