@@ -6,7 +6,7 @@ on:
       environment:
         type: choice
         options:
-          - test
+          - beta
           - production
         required: true
         
@@ -14,4 +14,9 @@ jobs:
   test:
     runs-on: macos-12
     steps:
-      - run: echo  The tags are ${{ inputs.environment }} 
+      - run: echo  The tags are ${{ inputs.environment }}
+      - run: echo  build beta
+        if: inputs.environment == beta
+      - run: echo  build production
+        if: inputs.environment == production
+      
