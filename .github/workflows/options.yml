@@ -16,7 +16,7 @@ jobs:
     steps:
       - run: echo  The tags are ${{ inputs.environment }}
       - run: echo  build beta
-        if: inputs.environment == beta
+        if: inputs.environment == 'beta'
       - run: echo  build production
-        if: inputs.environment == production
+        if: inputs.environment == 'production'
       
