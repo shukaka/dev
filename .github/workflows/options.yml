@@ -1,0 +1,17 @@
+name: test options
+
+env:
+  SERVER: production
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        type: environment
+        required: true
+        
+jobs:
+  test:
+    runs-on: macos-12
+    steps:
+      - echo ${{ inputs.environment }}
