@@ -14,4 +14,4 @@ jobs:
   test:
     runs-on: macos-12
     steps:
-      - run: echo  The tags are ${{ inputs.tags }} 
+      - run: echo  The tags are ${{ inputs.environment }} 
