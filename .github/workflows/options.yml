@@ -14,4 +14,4 @@ jobs:
   test:
     runs-on: macos-12
     steps:
-      - echo ${{ inputs.environment }}
+      - echo ${{ github.event.inputs.environment }}
