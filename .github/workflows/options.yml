@@ -1,6 +1,6 @@
 name: test options
 
-env:
+environment:
   SERVER: production
 
 on:
