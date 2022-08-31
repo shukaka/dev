@@ -1,0 +1,30 @@
+name: build windows
+
+on:
+  workflow_dispatch:
+  
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.WORKFLOW_CLONE_SUBMODULE }}
+          submodules: recursive
+      
+      - name: install yq
+        run: choco install yq
+      
+      - name: enable flutter desktop support
+        run: flutter config --enable-windows-desktop
+
+      - name: create msix package
+        run: cd D:\a\dev\dev && flutter pub run msix:create --version $(yq '.version')
+
+      - name: upload app
+        uses: actions/upload-artifact@v2
+        with:
+          name: msix
+          path: build\windows\runner\Release\dev.msix
+          retention-days: 1
