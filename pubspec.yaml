@@ -75,10 +75,9 @@ flutter:
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
   
-  msix_config:
-    display_name: dev
-    publisher_display_name: dev
-    identity_name: dev.dev
-    publisher: CN=2ADCF546-7657-4D06-A90D-53BCB55F065F
-    store: true
-    capabilities: runFullTrust
+msix_config:
+  display_name: dev
+  publisher_display_name: dev   identity_name: dev.dev
+  publisher: CN=2ADCF546-7657-4D06-A90D-53BCB55F065F
+  store: true
+  capabilities: runFullTrust
