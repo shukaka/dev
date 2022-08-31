@@ -34,5 +34,5 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: msix
-          path: build\windows\runner\Release\dev.msix
+          path: build\windows\runner\Release\demo.msix
           retention-days: 1
