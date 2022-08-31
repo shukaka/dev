@@ -30,9 +30,9 @@ jobs:
       - name: create msix package
         run: cd D:\a\dev\dev && flutter pub run msix:create
 
-      - name: upload app`1
+      - name: upload app
         uses: actions/upload-artifact@v2
         with:
           name: msix
-          path: build\windows\runner\Release\demo.msix
+          path: build\windows\runner\Release\dev.msix
           retention-days: 1
