@@ -12,6 +12,11 @@ jobs:
       
       - name: install yq
         run: choco install yq
+        
+      - name: setup flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable' 
       
       - name: enable flutter desktop support
         run: flutter config --enable-windows-desktop
