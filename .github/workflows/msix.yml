@@ -28,7 +28,7 @@ jobs:
         shell: bash
 
       - name: create msix package
-        run: cd D:\a\dev\dev && flutter pub run msix:create --version "$(yq '.version').0"
+        run: cd D:\a\dev\dev && flutter pub run msix:create
 
       - name: upload app`1
         uses: actions/upload-artifact@v2
