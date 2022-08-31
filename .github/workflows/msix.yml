@@ -24,7 +24,7 @@ jobs:
       - run: flutter pub get
 
       - name: create msix package
-        run: cd D:\a\dev\dev && flutter pub run msix:create --version $(yq '.version')
+        run: cd D:\a\dev\dev && flutter pub run msix:create --version "$(yq '.version').0"
 
       - name: upload app
         uses: actions/upload-artifact@v2
