@@ -22,10 +22,6 @@ jobs:
         run: flutter config --enable-windows-desktop
       
       - run: flutter pub get
-      
-      - name: modify msix version
-        run: sed -i "s/1.0.0.0/$(yq '.version' pubspec.yaml).0/g" pubspec.yaml
-        shell: bash
 
       - name: create msix package
         run: cd D:\a\dev\dev && flutter pub run msix:create
