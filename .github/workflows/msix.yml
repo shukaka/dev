@@ -20,6 +20,8 @@ jobs:
       
       - name: enable flutter desktop support
         run: flutter config --enable-windows-desktop
+      
+      - run: flutter pub get
 
       - name: create msix package
         run: cd D:\a\dev\dev && flutter pub run msix:create --version $(yq '.version')
