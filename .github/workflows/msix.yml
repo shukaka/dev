@@ -2,6 +2,11 @@ name: build windows
 
 on:
   workflow_dispatch:
+    inputs:
+      msixVersion:
+        type: string
+        default: 'x.y.z.0'
+        description: 'ms-store version, the last number must be 0'
   
 jobs:
   build:
@@ -12,6 +17,14 @@ jobs:
       
       - name: install yq
         run: choco install yq
+        
+      - name: modify msixVersion in pubspec.yaml
+        run: yq -i '.version = "${{ inputs.msixVersion }}"' pubspec.yaml
+        shell: bash
+      
+      - name: test msixVersion in pubspec.yaml
+        run: cat pubspec.yaml
+        shell: bash
         
       - name: setup flutter
         uses: subosito/flutter-action@v2
